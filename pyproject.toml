@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aura-mnemos"
+version = "0.1.0"
+description = "A persistent-memory MCP server for AI agents, with an honest health endpoint that survives its store dying."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [
+    { name = "Reality Optimizer" },
+]
+
+[project.scripts]
+aura-mnemos = "aura_mnemos.server:main"
+aura-mnemos-health = "aura_mnemos.health:main"
+
+[project.optional-dependencies]
+health = [
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "pydantic>=2",
+]
+dev = [
+    "pytest>=8",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["aura_mnemos"]
